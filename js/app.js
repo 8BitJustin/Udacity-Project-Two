@@ -2,6 +2,8 @@
  * Create a list that holds all of your cards
  */
 
+let card = document.querySelectorAll('.card');
+let cards = Array.from(document.getElementsByClassName('card'));
 
 /*
  * Display the cards on the page
@@ -9,6 +11,19 @@
  *   - loop through each card and create its HTML
  *   - add each card's HTML to the page
  */
+
+const deck = document.querySelector('.deck');
+
+const setup = () => {
+    const shuffled = shuffle(cards);
+    for (let i = 0; i < shuffled.length; i++) {
+        [].forEach.call(shuffled, function(item) {
+            deck.appendChild(item);
+        });
+    }
+}
+
+setup();
 
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
@@ -25,6 +40,25 @@ function shuffle(array) {
     return array;
 }
 
+for (let i = 0; i < card.length; i++) {
+    card[i].addEventListener('click', function() {
+        
+        if (this.classList.contains('open', 'show')) {
+            this.classList.remove('open', 'show');
+        } else {
+            this.classList.add('open', 'show');
+        };
+    });
+}
+
+
+// When user wins, display winning ascii art into console as easter egg
+// console.log(`
+//       \\    /\\
+//        \)  \( '\)
+//       \(  \/  \)
+//        \\(__\)|
+// `);
 
 /*
  * set up the event listener for a card. If a card is clicked:
