@@ -40,33 +40,66 @@ function shuffle(array) {
     return array;
 }
 
-for (let i = 0; i < card.length; i++) {
-    card[i].addEventListener('click', function() {
-        
-        if (this.classList.contains('open', 'show')) {
-            this.classList.remove('open', 'show');
-        } else {
-            this.classList.add('open', 'show');
-        };
-    });
-}
-
-
-// When user wins, display winning ascii art into console as easter egg
-// console.log(`
-//       \\    /\\
-//        \)  \( '\)
-//       \(  \/  \)
-//        \\(__\)|
-// `);
-
 /*
  * set up the event listener for a card. If a card is clicked:
  *  - display the card's symbol (put this functionality in another function that you call from this one)
- *  - add the card to a *list* of "open" cards (put this functionality in another function that you call from this one)
+  *  - add the card to a *list* of "open" cards (put this functionality in another function that you call from this one)
+*/
+
+let opened = [];
+
+const flipped = function() {
+    this.classList.add('open');
+    this.classList.add('show');
+    opened.push(this);
+    match();
+};
+
+const disabled = function() {
+    deck.style.pointerEvents = 'none';
+}
+
+const enabled = function() {
+    deck.style.pointerEvents = 'auto';
+}
+
+const remove = function() {
+    disabled();
+    setTimeout(() => {
+        opened[0].classList.remove('open', 'show');
+        opened[1].classList.remove('open', 'show');
+        enabled();
+        opened = [];
+    }, 900);
+
+};
+
+const matched = function() {
+    opened[0].classList.add('match');
+    opened[0].classList.remove('open', 'show');
+    opened[1].classList.add('match');
+    opened[1].classList.remove('open', 'show');
+    opened = [];
+};
+
+const match = () => {
+    if (opened.length === 2) {
+        if (opened[0].type === opened[1].type) {
+            matched();
+        } else {
+            remove();
+        }
+    }
+};
+
+/*
  *  - if the list already has another card, check to see if the two cards match
  *    + if the cards do match, lock the cards in the open position (put this functionality in another function that you call from this one)
  *    + if the cards do not match, remove the cards from the list and hide the card's symbol (put this functionality in another function that you call from this one)
  *    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
  *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
  */
+
+for (let i = 0; i < card.length; i++) {
+    card[i].addEventListener('click', flipped);
+};
