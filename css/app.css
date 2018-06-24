@@ -101,9 +101,54 @@ h1 {
 .score-panel .stars li {
     list-style: none;
     display: inline-block;
+    color: #FCD667;
 }
 
 .score-panel .restart {
     float: right;
+    cursor: pointer;
+}
+
+/*
+ * Winning Modal
+ */
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(170,240,209,0.5);
+}
+
+.modalContent {
+    background: linear-gradient(160deg, #02ccba 0%, #aa7ecd 100%);
+    color: white;
+    margin: 20% auto;
+    border: 1px solid #FD5B78;
+    border-radius: 10px;
+    width: 40%;
+}
+
+.modalContent h1 {
+    margin: 50px auto;
+    text-align: center;
+}
+
+.close {
+    color: white;
+    float: right;
+    padding-right: 20px;
+    font-size: 42px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: white;
+    text-decoration: none;
     cursor: pointer;
 }
