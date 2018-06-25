@@ -8,7 +8,8 @@
     <link rel="stylesheet prefetch" href="https://fonts.googleapis.com/css?family=Coda">
     <link rel="stylesheet" href="css/app.css">
 </head>
-<body>
+<!-- When page loads, shuffling function runs -->
+<body onload="shuffling()">
 
     <div class="container">
         <header>
@@ -22,7 +23,7 @@
         		<li><i class="fa fa-star"></i></li>
         	</ul>
 
-        	<span class="moves">3</span> Moves
+        	<span class="moves">0</span> Move(s)
 
             <div class="restart" onclick="restart()">
         		<i class="fa fa-repeat"></i>
@@ -83,8 +84,12 @@
         <!-- Winning Popup Modal -->
         <div class="modal" id="myModal">
             <div class="modalContent">
-                <span class="close">&times;</span>
-                <h1>You Won!</h1>
+                <span class="close" onclick="closeModal()">&times;</span>
+                <h1 class="winningHeader">You Won!</h1>
+                <p class="starRating"></p>
+                <p class="winnerMoves"></p>
+                <p class="time"></p>
+                <p class='resetP' onclick="restart()">Again?</p>
             </div>
         </div>
     </div>

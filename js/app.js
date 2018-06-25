@@ -6,6 +6,7 @@ const cards = Array.from(document.getElementsByClassName('card'));
 const deck = document.querySelector('.deck');
 const modal = document.getElementById('myModal');
 const span = document.getElementsByClassName('close')[0];
+const movesCounter = document.querySelector('.moves');
 
 // Shuffles cards and displays on board.
 const shuffling = function() {
@@ -28,7 +29,20 @@ function shuffle(array) {
         array[randomIndex] = temporaryValue;
     }
     return array;
-}
+};
+
+// Variable keeping track of moves taken.
+let moves = 0;
+
+// Function counting moves made.
+const movesFunction = function() {
+    moves++;
+    movesCounter.innerHTML = moves;
+    starPop();
+    if(moves === 1) {
+        timer();
+    }
+};
 
 // Variable placing all clicked cards within array.
 let opened = [];
@@ -38,11 +52,14 @@ let matchedTotal = [];
 
 // Function to give clicked card open and show classes, indicating flipped.
 const flipped = function() {
+
     this.classList.add('open');
     this.classList.add('show');
     opened.push(this);
     match();
     if(matchedTotal.length === 8) {
+        starModal();
+        stahp();
         winnerWinnerChickenDinner();
     }
 };
@@ -67,8 +84,10 @@ const match = function() {
     if (opened.length === 2) {
         if (opened[0].type === opened[1].type) {
             matched();
+            movesFunction();
         } else {
             remove();
+            movesFunction();
         }
     }
 };
@@ -95,18 +114,43 @@ const remove = function() {
     }, 900);
 };
 
+// Stars counter
+const stars = Array.from(document.getElementsByClassName('fa-star'));
+const starPop = function() {
+    if(moves > 10 && moves < 20){
+        for(let i = 0; i < 3; i++) {
+            if(i > 1) {
+                stars[i].style.visibility = "hidden";
+            }
+        }
+    }else if(moves >= 20) {
+        for(let i = 0; i < 3; i++){
+            if(i > 0) {
+                stars[i].style.visibility = "hidden";
+            }
+        }
+    }
+};
+
+// Star counter on modal
+const starModal = function() {
+    document.querySelector('.starRating').innerHTML = 'You got ' + starRating + ' stars!'
+    console.log('test');
+};
+
 // Congrats!!
 const winnerWinnerChickenDinner = function() {
+    document.querySelector('.winnerMoves').innerHTML = 'It only took you ' + moves + ' moves!';
     modal.style.display = 'block';
 };
 
-// When the user clicks on <span> (x), close the modal
-span.onclick = function() {
+// Closes modal when 'X' is clicked.
+const closeModal = function() {
     modal.style.display = 'none';
 };
 
-// When the user clicks anywhere outside of the modal, close it
-window.onclick = function(e) {
+// Closes modal when clicked outside.
+document.onclick = function(e) {
     if (e.target == modal) {
         modal.style.display = 'none';
     }
@@ -117,36 +161,23 @@ const restart = function() {
     location.reload();
 };
 
-// Timer function
-// let timer = function() {
-//     setInterval(function() {
-//         console.log('hi');
-//     }, 1000);
-// };
+// Timer function and variables
+let sec = 0;
+let min = 0;
+const totalTime = document.querySelector(".time");
+let interval;
+function timer(){
+    interval = setInterval(function(){
+        totalTime.innerHTML = min + ' minutes ' + sec + ' seconds';
+        sec++;
+        if(sec === 60) {
+            min++;
+            sec = 0;
+        }
+    }, 1000);
+};
 
-shuffling();
-
-/*
- * Create a list that holds all of your cards
- */
-
-/*
- * Display the cards on the page
- *   - shuffle the list of cards using the provided "shuffle" method below
- *   - loop through each card and create its HTML
- *   - add each card's HTML to the page
- */
-
-/*
- * set up the event listener for a card. If a card is clicked:
- *  - display the card's symbol (put this functionality in another function that you call from this one)
-  *  - add the card to a *list* of "open" cards (put this functionality in another function that you call from this one)
-*/
-
-/*
- *  - if the list already has another card, check to see if the two cards match
- *    + if the cards do match, lock the cards in the open position (put this functionality in another function that you call from this one)
- *    + if the cards do not match, remove the cards from the list and hide the card's symbol (put this functionality in another function that you call from this one)
- *    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
- *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
- */
+// Stop Timer function
+const stahp = function() {
+    clearInterval(interval);
+};
