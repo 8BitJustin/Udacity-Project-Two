@@ -140,9 +140,13 @@ h1 {
 }
 
 .modalContent p {
-    margin-bottom: 80px;
+    margin-bottom: 30px;
     text-align: center;
     font-size: 1.2em;
+}
+
+.modalContent p:last-child {
+    margin-bottom: 80px;
 }
 
 .resetP {

@@ -1,12 +1,10 @@
-
-
 // Variables for card, cards, and deck.
-const card = document.querySelectorAll('.card');
 const cards = Array.from(document.getElementsByClassName('card'));
 const deck = document.querySelector('.deck');
 const modal = document.getElementById('myModal');
 const span = document.getElementsByClassName('close')[0];
 const movesCounter = document.querySelector('.moves');
+const stars = Array.from(document.getElementsByClassName('fa-star'));
 
 // Shuffles cards and displays on board.
 const shuffling = function() {
@@ -52,32 +50,31 @@ let matchedTotal = [];
 
 // Function to give clicked card open and show classes, indicating flipped.
 const flipped = function() {
-
     this.classList.add('open');
     this.classList.add('show');
     opened.push(this);
     match();
     if(matchedTotal.length === 8) {
-        starModal();
         stahp();
         winnerWinnerChickenDinner();
+        rating();
     }
 };
 
 // For loop to run flipped() for every card clicked.
-for (let i = 0; i < card.length; i++) {
-    card[i].addEventListener('click', flipped);
+for (let i = 0; i < cards.length; i++) {
+    cards[i].addEventListener('click', flipped);
 };
 
 // Function created to disable clicking when cards are temporary shown.
 const disabled = function() {
     deck.style.pointerEvents = 'none';
-}
+};
 
 // Function to reenable pointer events when the cards 'flip back'.
 const enabled = function() {
     deck.style.pointerEvents = 'auto';
-}
+};
 
 // Function that sees what is placed within the opened array. If two cards are clicked, they are compared and either matched() or remove() is ran.
 const match = function() {
@@ -115,7 +112,6 @@ const remove = function() {
 };
 
 // Stars counter
-const stars = Array.from(document.getElementsByClassName('fa-star'));
 const starPop = function() {
     if(moves > 10 && moves < 20){
         for(let i = 0; i < 3; i++) {
@@ -133,7 +129,9 @@ const starPop = function() {
 };
 
 // Star counter on modal
-const starModal = function() {
+const rating = function() {
+
+    var starRating = document.querySelector(".stars li").innerHTML;
     document.querySelector('.starRating').innerHTML = 'You got ' + starRating + ' stars!'
     console.log('test');
 };
