@@ -104,7 +104,13 @@ h1 {
     color: #FCD667;
 }
 
+.score-panel .timer {
+    padding-left: 40px;
+    display: inline-block;
+}
+
 .score-panel .restart {
+    margin-top: 16px;
     float: right;
     cursor: pointer;
 }
@@ -147,6 +153,11 @@ h1 {
 
 .modalContent p:last-child {
     margin-bottom: 80px;
+}
+
+.modalContent p li {
+    list-style-type: none;
+    display: inline-block;
 }
 
 .resetP {

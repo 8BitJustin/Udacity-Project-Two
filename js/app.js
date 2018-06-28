@@ -1,10 +1,17 @@
-// Variables for card, cards, and deck.
+// Variables.
 const cards = Array.from(document.getElementsByClassName('card'));
 const deck = document.querySelector('.deck');
 const modal = document.getElementById('myModal');
 const span = document.getElementsByClassName('close')[0];
 const movesCounter = document.querySelector('.moves');
 const stars = Array.from(document.getElementsByClassName('fa-star'));
+const totalTime = document.querySelector(".time");
+let moves = 0;
+let opened = [];
+let matchedTotal = [];
+let sec = 0;
+let min = 0;
+let interval;
 
 // Shuffles cards and displays on board.
 const shuffling = function() {
@@ -30,7 +37,7 @@ function shuffle(array) {
 };
 
 // Variable keeping track of moves taken.
-let moves = 0;
+
 
 // Function counting moves made.
 const movesFunction = function() {
@@ -43,10 +50,7 @@ const movesFunction = function() {
 };
 
 // Variable placing all clicked cards within array.
-let opened = [];
 
-// Variable placing all matched cards within array.
-let matchedTotal = [];
 
 // Function to give clicked card open and show classes, indicating flipped.
 const flipped = function() {
@@ -116,13 +120,13 @@ const starPop = function() {
     if(moves > 10 && moves < 20){
         for(let i = 0; i < 3; i++) {
             if(i > 1) {
-                stars[i].style.visibility = "hidden";
+                stars[i].style.display = "none";
             }
         }
     }else if(moves >= 20) {
         for(let i = 0; i < 3; i++){
             if(i > 0) {
-                stars[i].style.visibility = "hidden";
+                stars[i].style.display = "none";
             }
         }
     }
@@ -130,10 +134,8 @@ const starPop = function() {
 
 // Star counter on modal
 const rating = function() {
-
-    var starRating = document.querySelector(".stars li").innerHTML;
-    document.querySelector('.starRating').innerHTML = 'You got ' + starRating + ' stars!'
-    console.log('test');
+    var starRating = document.querySelector(".stars").innerHTML;
+    document.querySelector('.starRating').innerHTML = starRating;
 };
 
 // Congrats!!
@@ -160,10 +162,6 @@ const restart = function() {
 };
 
 // Timer function and variables
-let sec = 0;
-let min = 0;
-const totalTime = document.querySelector(".time");
-let interval;
 function timer(){
     interval = setInterval(function(){
         totalTime.innerHTML = min + ' minutes ' + sec + ' seconds';
@@ -172,7 +170,14 @@ function timer(){
             min++;
             sec = 0;
         }
+        return sec;
+        return min;
     }, 1000);
+    const timeDiv = document.getElementById('clock');
+    const timePara = document.createElement('p');
+    const timeText = document.createTextNode('Min: ' + min + ' ' + 'Sec: ' + sec);
+    timePara.appendChild(timeText);
+    timeDiv.appendChild(timePara);
 };
 
 // Stop Timer function
