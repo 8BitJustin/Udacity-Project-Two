@@ -6,6 +6,8 @@ const span = document.getElementsByClassName('close')[0];
 const movesCounter = document.querySelector('.moves');
 const stars = Array.from(document.getElementsByClassName('fa-star'));
 const totalTime = document.querySelector(".time");
+const htmlSec = document.querySelector('.pSec');
+const htmlMin = document.querySelector('.pMin');
 let moves = 0;
 let opened = [];
 let matchedTotal = [];
@@ -164,20 +166,15 @@ const restart = function() {
 // Timer function and variables
 function timer(){
     interval = setInterval(function(){
-        totalTime.innerHTML = min + ' minutes ' + sec + ' seconds';
         sec++;
         if(sec === 60) {
             min++;
             sec = 0;
         }
-        return sec;
-        return min;
+        totalTime.innerHTML = min + ' minutes ' + sec + ' seconds';
+        htmlSec.innerHTML = sec;
+        htmlMin.innerHTML = min;
     }, 1000);
-    const timeDiv = document.getElementById('clock');
-    const timePara = document.createElement('p');
-    const timeText = document.createTextNode('Min: ' + min + ' ' + 'Sec: ' + sec);
-    timePara.appendChild(timeText);
-    timeDiv.appendChild(timePara);
 };
 
 // Stop Timer function
