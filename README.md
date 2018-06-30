@@ -1,20 +1,17 @@
 # Memory Game Project
 
-## Table of Contents
+## About this game/project
 
-* [Instructions](#instructions)
-* [Contributing](#contributing)
+With some starter code (HTML, CSS) and instruction (JS) provided, this project asked that a working memory game be created.
 
 ## Instructions
 
-The starter project has some HTML and CSS styling to display a static version of the Memory Game project. You'll need to convert this project from a static project to an interactive one. This will require modifying the HTML and CSS files, but primarily the JavaScript file.
+Basically, when a card is clicked, it's symbol is shown. When a second it clicked, that symbol shows, and the timer then starts (I wanted it to start after the second card was clicked). If they match, they stay 'face up', change color, and one turn is recorded as a 'move'. If they don't match, they both flip back over after just under a second, one turn is recorded and shown as a 'move', and the game continues until all cards match.
 
-To get started, open `js/app.js` and start building out the app's functionality
+While the game is going, the timer is counting up showing the time taken to play the current round. After 10 turns are recorded, one of the three stars is removed. After another 10, a second is removed. The third stays regardless of the move count.
 
-For specific, detailed instructions, look at the project instructions in the [Udacity Classroom](https://classroom.udacity.com/me).
+Once the game is completed, a box comes up indicating the user won, provides a star ranking, time it took, moves taken, and an 'Again?' reset button.
 
-## Contributing
+## Questions
 
-This repository is the starter code for _all_ Udacity students. Therefore, we most likely will not accept pull requests.
-
-For details, check out [CONTRIBUTING.md](CONTRIBUTING.md).
+Please reach out to my email at j.olson.digital@gmail.com and feel free to contribute to my GitHub repo!
