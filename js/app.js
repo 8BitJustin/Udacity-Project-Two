@@ -40,8 +40,8 @@ const start = function() {
     // Function that runs if both cards have same type. Removed open and show classes, adds match class and empties opened array.
     const matched = function() {
         opened[0].classList.add('match');
-        opened[0].classList.remove('open', 'show');
         opened[1].classList.add('match');
+        opened[0].classList.remove('open', 'show');
         opened[1].classList.remove('open', 'show');
         matchedTotal.push(this);
         opened = [];
@@ -66,7 +66,7 @@ const start = function() {
         this.classList.add('show');
         opened.push(this);
         match();
-        if(matchedTotal.length === 8) {
+        if (matchedTotal.length === 8) {
             stahp();
             winnerWinnerChickenDinner();
             rating();
@@ -96,22 +96,22 @@ const start = function() {
         moves++;
         movesCounter.innerHTML = moves;
         starPop();
-        if(moves === 1) {
+        if (moves === 1) {
             timer();
         }
     };
 
     // Stars counter
     const starPop = function() {
-        if(moves > 10 && moves < 20){
+        if (moves > 10 && moves < 20){
             for(let i = 0; i < 3; i++) {
-                if(i > 1) {
+                if (i > 1) {
                     stars[i].style.display = "none";
                 }
             }
-        }else if(moves >= 20) {
+        } else if (moves >= 20) {
             for(let i = 0; i < 3; i++){
-                if(i > 0) {
+                if (i > 0) {
                     stars[i].style.display = "none";
                 }
             }
@@ -130,7 +130,7 @@ const start = function() {
         modal.style.display = 'block';
     };
 
-    // Closes modal when 'X' is clicked.
+    // Closes modal when x is clicked.
     const closeModal = function() {
         modal.style.display = 'none';
     };
@@ -146,7 +146,7 @@ const start = function() {
     function timer(){
         interval = setInterval(function(){
             sec++;
-            if(sec === 60) {
+            if (sec === 60) {
                 min++;
                 sec = 0;
             }
@@ -178,7 +178,7 @@ function shuffle(array) {
     return array;
 };
 
-// Restart game, reloads page. Executed by clicking restart button on page (function attached to restart div).
+// Restart game, reloads page. Executed by clicking restart button on page (function attached to restart div and winning modal).
 const restart = function() {
     location.reload();
 };

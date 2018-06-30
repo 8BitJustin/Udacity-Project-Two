@@ -8,7 +8,7 @@
     <link rel="stylesheet prefetch" href="https://fonts.googleapis.com/css?family=Coda">
     <link rel="stylesheet" href="css/app.css">
 </head>
-<!-- When page loads, shuffling function runs -->
+<!-- When page loads, start function runs -->
 <body onload="start()">
 
     <div class="container">
@@ -25,15 +25,18 @@
 
         	<span class="moves">0</span> Move(s)
 
+            <!-- Added to display a working timer -->
             <div class="timer" id="clock">
                 <p>Min: <span class="pMin">0</span> Sec: <span class="pSec">0</span></p>
             </div>
 
+            <!-- restart function attached to div -->
             <div class="restart" onclick="restart()">
         		<i class="fa fa-repeat"></i>
         	</div>
         </section>
 
+        <!-- type was added to each LI to assist with matching items -->
         <ul class="deck">
             <li class="card" type='diamond'>
                 <i class="fa fa-diamond"></i>
